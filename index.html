@@ -14,19 +14,16 @@
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
-  <!-- Floating button -->
   <div class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full cursor-pointer hover:bg-green-600" onclick="openDashboard()">
     🌱
   </div>
 
-  <!-- Optimization Widget Dashboard -->
   <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative hidden" id="dashboardContainer">
     <div class="bg-green-500 text-white p-4 rounded-t-lg">
       <h2 class="text-xl font-semibold">Optimize Your Site for Cost-Savings and Eco-Friendliness</h2>
     </div>
 
     <div class="p-4">
-      <!-- Current and Potential Prices -->
       <div class="flex justify-between items-center mb-4">
         <div>
           <p class="font-semibold text-gray-700">Current Price</p>
@@ -38,10 +35,8 @@
         </div>
       </div>
 
-      <!-- Improvement Suggestions -->
       <h3 class="font-semibold text-lg mb-2 text-gray-800">Improvements Detected</h3>
 
-      <!-- Convert Images to WebP (Initially Pending Verification) -->
       <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg mb-4" id="webpTask">
         <h4 class="font-semibold text-yellow-700 flex justify-between">Convert Images to WebP
           <span class="text-yellow-700">$5.50 potential</span>
@@ -51,7 +46,6 @@
         <p id="webpStatus" class="text-gray-600 mt-2 hidden">Verifying...</p>
       </div>
 
-      <!-- Minify CSS/JS Task (Initially Pending Verification) -->
       <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg mb-4" id="minifyTask">
         <h4 class="font-semibold text-yellow-700 flex justify-between">Minify CSS/JS Files
           <span class="text-yellow-700">$2.00 potential</span>
@@ -61,7 +55,6 @@
         <p id="minifyStatus" class="text-gray-600 mt-2 hidden">Verifying...</p>
       </div>
 
-      <!-- Lazy Loading Task (Initially Pending Verification) -->
       <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg mb-4" id="lazyTask">
         <h4 class="font-semibold text-yellow-700 flex justify-between">Enable Lazy Loading
           <span class="text-yellow-700">$1.50 potential</span>
@@ -71,13 +64,11 @@
         <p id="lazyStatus" class="text-gray-600 mt-2 hidden">Verifying...</p>
       </div>
 
-      <!-- Total Savings and Potential Savings -->
       <div class="bg-green-500 text-white p-4 rounded-lg text-center">
         <p class="font-semibold">Total Savings from Applied Actions</p>
         <p class="text-xl font-semibold" id="totalSavings">$0.00</p>
       </div>
 
-      <!-- Close Button -->
       <div class="text-center mt-4">
         <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600" onclick="closeDashboard()">Close</button>
       </div>
@@ -85,30 +76,26 @@
   </div>
 
   <script>
-    let appliedSavings = 0; // Initially no savings applied
-    let totalPotentialSavings = 5.50 + 2.00 + 1.50; // Total possible savings
+    let appliedSavings = 0; 
+    let totalPotentialSavings = 5.50 + 2.00 + 1.50; 
     let webpVerified = false;
     let minifyVerified = false;
     let lazyVerified = false;
 
-    // Function to open the dashboard
     function openDashboard() {
       document.getElementById('dashboardContainer').classList.remove('hidden');
     }
 
-    // Function to close the dashboard
     function closeDashboard() {
       document.getElementById('dashboardContainer').classList.add('hidden');
     }
 
-    // Function to simulate task verification (like a smart contract)
     function verifyTask(task) {
       if (task === 'webp' && !webpVerified) {
         document.getElementById('webpStatus').classList.remove('hidden');
         setTimeout(() => {
-          // Mark task as verified
           webpVerified = true;
-          appliedSavings += 5.50; // Add WebP savings
+          appliedSavings += 5.50;
 
           document.getElementById('webpTask').classList.remove('bg-yellow-50', 'border-yellow-400', 'text-yellow-700');
           document.getElementById('webpTask').classList.add('bg-green-50', 'border-green-500', 'text-green-700');
@@ -119,13 +106,12 @@
             <p class="text-sm text-green-600">Your images were converted to WebP, improving load times and reducing bandwidth usage.</p>
           `;
           updateSavings();
-        }, 2000); // Simulate verification delay
+        }, 2000);
       } else if (task === 'minify' && !minifyVerified) {
         document.getElementById('minifyStatus').classList.remove('hidden');
         setTimeout(() => {
-          // Mark task as verified
           minifyVerified = true;
-          appliedSavings += 2.00; // Add minification savings
+          appliedSavings += 2.00;
 
           document.getElementById('minifyTask').classList.remove('bg-yellow-50', 'border-yellow-400', 'text-yellow-700');
           document.getElementById('minifyTask').classList.add('bg-green-50', 'border-green-500', 'text-green-700');
@@ -136,27 +122,24 @@
             <p class="text-sm text-green-600">Your CSS/JS files were minified, reducing file sizes and improving performance.</p>
           `;
           updateSavings();
-        }, 2000); // Simulate verification delay
+        }, 2000);
       } else if (task === 'lazy' && !lazyVerified) {
         document.getElementById('lazyStatus').classList.remove('hidden');
         setTimeout(() => {
-          // Simulate verification failure
           lazyVerified = false;
           document.getElementById('lazyStatus').innerText = 'Lazy Loading failed. This optimization was not applied.';
-        }, 2000); // Simulate verification delay
+        }, 2000);
       }
     }
 
-    // Function to update the total savings after task verification
     function updateSavings() {
-      const newPrice = 120 - appliedSavings; // Calculate new price based on successful verifications
+      const newPrice = 120 - appliedSavings; 
       document.getElementById('totalSavings').innerText = `$${appliedSavings.toFixed(2)}`;
       document.getElementById('potentialPrice').innerText = `$${newPrice.toFixed(2)}/month`;
     }
 
-    // Initial display setup
     window.onload = function() {
-      document.getElementById('potentialPrice').innerText = `$120.00/month`; // Initial potential price
+      document.getElementById('potentialPrice').innerText = `$120.00/month`; 
     };
   </script>
 
