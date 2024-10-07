@@ -46,7 +46,7 @@ The **SustainabilityGPT** plugin encourages sustainable web practices by offerin
 
 ## 🎨 UI Example
 
-![Plugin Screenshot](![image](https://github.com/user-attachments/assets/c4d82fdd-156c-4768-bf5a-b2ecf5c523e0)
+![Plugin Screenshot](![image](https://github.com/user-attachments/assets/a9d115ff-d5c3-43f9-8d67-a93f8f9a519a)
 )
 
 ## 🧑‍💻 Contributing
